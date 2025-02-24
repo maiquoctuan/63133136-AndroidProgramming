@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Ex2_LinearLayout</string>
+    <string name="button_1">NÚT SỐ 1</string>
+    <string name="button_1_description">Nút số 1 - Bấm để thực hiện hành động</string>
+
+    <string name="button_2">NÚT SỐ 2</string>
+    <string name="button_2_description">Nút số 2 - Bấm để tiếp tục</string>
+
+    <string name="button_3">NÚT SỐ 3</string>
+    <string name="button_3_description">Nút số 3 - Bấm để quay lại</string>
+
+</resources>
