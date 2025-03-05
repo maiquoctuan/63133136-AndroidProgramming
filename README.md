@@ -68,52 +68,6 @@ Lưu các bài thực hành, bài tập AndroidProgram
 
 ![Phép chia](C:\Users\ASUS\Pictures\Screenshots\Screenshot 2025-03-05 163126.png)
 
-### Code chính
 
-```java
-public class MainActivity extends AppCompatActivity {
-    EditText edtSo1, edtSo2;
-    TextView txtResult;
-    Button btnAdd, btnSub, btnMul, btnDiv;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        edtSo1 = findViewById(R.id.edtSo1);
-        edtSo2 = findViewById(R.id.edtSo2);
-        txtResult = findViewById(R.id.txtResult);
-        btnAdd = findViewById(R.id.btnAdd);
-        btnSub = findViewById(R.id.btnSub);
-        btnMul = findViewById(R.id.btnMul);
-        btnDiv = findViewById(R.id.btnDiv);
-
-        btnAdd.setOnClickListener(view -> calculate("+") );
-        btnSub.setOnClickListener(view -> calculate("-") );
-        btnMul.setOnClickListener(view -> calculate("*") );
-        btnDiv.setOnClickListener(view -> calculate("/") );
-    }
-
-    private void calculate(String operator) {
-        double so1 = Double.parseDouble(edtSo1.getText().toString());
-        double so2 = Double.parseDouble(edtSo2.getText().toString());
-        double result = 0;
-
-        switch (operator) {
-            case "+": result = so1 + so2; break;
-            case "-": result = so1 - so2; break;
-            case "*": result = so1 * so2; break;
-            case "/": result = so1 / so2; break;
-        }
-        txtResult.setText(String.valueOf(result));
-    }
-}
-```
-
-### Nhận xét
-- Ứng dụng hoạt động đúng với yêu cầu bài tập.
-- Giao diện đơn giản, dễ sử dụng.
----
 
 ⭐️ *Cảm ơn bạn đã ghé thăm!* 😊
