@@ -36,38 +36,6 @@ Lưu các bài thực hành, bài tập AndroidProgram
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
 </p>
 
-## Ex4_AddSubMulDiv_Onclick
-
-### Mô tả
-Ứng dụng thực hiện các phép tính cộng, trừ, nhân, chia giữa hai số sử dụng sự kiện `OnClickListener`.
-
-### Giao diện ứng dụng
-
-| Phép tính | Kết quả |
-|-----------|---------|
-| Cộng      | 28.0    |
-| Trừ       | 16.0    |
-| Nhân      | 132.0   |
-| Chia      | 3.6667  |
-
-### Hình ảnh minh họa
-
-- Phép cộng:
-
-![Phép cộng](C:\Users\ASUS\Pictures\Screenshots\Screenshot 2025-03-05 163027.png)
-
-- Phép trừ:
-
-![Phép trừ](C:\Users\ASUS\Pictures\Screenshots\Screenshot 2025-03-05 163044.png)
-
-- Phép nhân:
-
-![Phép nhân](C:\Users\ASUS\Pictures\Screenshots\Screenshot 2025-03-05 163100.png)
-
-- Phép chia:
-
-![Phép chia](C:\Users\ASUS\Pictures\Screenshots\Screenshot 2025-03-05 163126.png)
-
 
 
 ⭐️ *Cảm ơn bạn đã ghé thăm!* 😊
