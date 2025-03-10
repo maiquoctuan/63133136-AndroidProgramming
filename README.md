@@ -39,9 +39,10 @@ Lưu các bài thực hành, bài tập AndroidProgram
 ###BÀI TẬP VỀ INTENT
 <p align="center">
   MÀN HÌNH ĐĂNG NHẬP:
-<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
  SAU KHI ĐĂNG NHẬP:
  <img src="https://github.com/maiquoctuan/63133136-AndroidProgramming/blob/main/Images/Screenshot%202025-03-10%20110737.png"/>
+</p>
 
 
 ⭐️ *Cảm ơn bạn đã ghé thăm!* 😊
