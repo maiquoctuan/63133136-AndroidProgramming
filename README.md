@@ -36,6 +36,13 @@ Lưu các bài thực hành, bài tập AndroidProgram
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
 </p>
 
+###BÀI TẬP VỀ INTENT
+<p align="center">
+  MÀN HÌNH ĐĂNG NHẬP:
+  <img src="https://github.com/maiquoctuan/63133136-AndroidProgramming/blob/main/Images/Screenshot%202025-03-10%20110724.png"/>
+ SAU KHI ĐĂNG NHẬP:
+ <img src="https://github.com/maiquoctuan/63133136-AndroidProgramming/blob/main/Images/Screenshot%202025-03-10%20110737.png"/>
+</p>
 
 
 ⭐️ *Cảm ơn bạn đã ghé thăm!* 😊
