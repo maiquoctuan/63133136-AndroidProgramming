@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 String pass = password.getText().toString();
 
                 if(user.equals("admin") && pass.equals("admin")) {
-                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
