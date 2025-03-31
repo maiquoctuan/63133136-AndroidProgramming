@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/tinhtong">
+
+    <TextView
+        android:id="@+id/tvManHinh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="MÀN HÌNH TÍNH TỔNG "
+        android:textColor="#FF0000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:shadowColor="#FFFFFF"/>
+
+    <EditText
+        android:id="@+id/edtSo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập số thứ nhất"
+        android:inputType="number"
+        android:layout_margin="16dp"/>
+
+    <EditText
+        android:id="@+id/edtSo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập số thứ hai"
+        android:inputType="number"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/btnTinhTong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="@color/black"
+        android:text="Tính Tổng"
+        android:backgroundTint="#03A9F4"
+        android:elevation="8dp"
+        android:translationZ="4dp"
+        android:textColorHighlight="#00BCD4"
+        android:textColorLink="#00B0FF" />
+
+    <TextView
+        android:id="@+id/tvKetQua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kết quả là: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
