@@ -23,25 +23,29 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Load mặc định là QuizFragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, quizFragment).commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, quizFragment)
+                .commit();
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
 
-            if (item.getItemId() == R.id.nav_quiz) {
+            int id = item.getItemId();
+            if (id == R.id.nav_quiz) {
                 selectedFragment = quizFragment;
-            } else if (item.getItemId() == R.id.nav_score) {
+            } else if (id == R.id.nav_score) {
                 selectedFragment = scoreFragment;
-            } else if (item.getItemId() == R.id.nav_admin) {
+            } else if (id == R.id.nav_admin) {
                 selectedFragment = adminFragment;
             }
 
             if (selectedFragment != null) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, selectedFragment)
+                        .commit();
             }
 
             return true;
         });
-
     }
 }
