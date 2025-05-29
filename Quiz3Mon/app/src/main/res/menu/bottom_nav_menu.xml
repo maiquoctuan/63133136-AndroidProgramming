@@ -3,15 +3,18 @@
     <item
         android:id="@+id/nav_quiz"
         android:title="Quiz"
+        android:iconTint="@color/white"
         android:icon="@android:drawable/ic_menu_edit" />
 
     <item
         android:id="@+id/nav_score"
         android:title="Score"
+        android:iconTint="@color/white"
         android:icon="@android:drawable/ic_menu_agenda" />
 
     <item
         android:id="@+id/nav_admin"
         android:title="Admin"
+        android:iconTint="@color/white"
         android:icon="@android:drawable/ic_menu_manage" />
 </menu>

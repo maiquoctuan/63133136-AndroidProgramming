@@ -9,6 +9,7 @@
     <TextView
         android:id="@+id/txtResult"
         android:text="Kết quả"
+        android:textColor="#0057FE"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
