@@ -1,21 +1,42 @@
 package com.example.quiz3mon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class QuizFragment extends Fragment {
 
-    public QuizFragment() {
-        // Constructor rỗng bắt buộc
+    public Button btnEnglish, btnIT, btnLiterature;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        // Ánh xạ các nút
+        btnEnglish = view.findViewById(R.id.btnEnglish);
+        btnIT = view.findViewById(R.id.btnIT);
+        btnLiterature = view.findViewById(R.id.btnLiterature);
+
+        // Xử lý khi người dùng chọn môn
+        btnEnglish.setOnClickListener(v -> startQuiz("English"));
+        btnIT.setOnClickListener(v -> startQuiz("IT"));
+        btnLiterature.setOnClickListener(v -> startQuiz("Literature"));
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_quiz, container, false);
+    // Phương thức mở QuizActivity và truyền tên môn học
+    public void startQuiz(String subject) {
+        Intent intent = new Intent(getActivity(), QuizActivity.class);
+        intent.putExtra("subject", subject);
+        startActivity(intent);
     }
 }
