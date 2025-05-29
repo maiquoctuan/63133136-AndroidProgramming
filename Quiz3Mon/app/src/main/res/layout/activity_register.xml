@@ -3,17 +3,26 @@
     android:padding="24dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg3"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
     <EditText
         android:id="@+id/etUsername"
         android:hint="Tên đăng nhập"
+        android:background="@drawable/edittext_background"
+        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/etPassword"
         android:hint="Mật khẩu"
+        android:background="@drawable/edittext_background"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -22,13 +31,15 @@
         android:id="@+id/rgRole"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <RadioButton android:id="@+id/rbUser" android:text="Người làm bài" />
-        <RadioButton android:id="@+id/rbAdmin" android:text="Admin" />
+        <RadioButton android:id="@+id/rbUser" android:text="Người làm bài" android:textColor="#2F6DF6" android:textStyle="bold"/>
+        <RadioButton android:id="@+id/rbAdmin" android:text="Admin" android:textColor="#2F6DF6" android:textStyle="bold"/>
     </RadioGroup>
 
     <Button
         android:id="@+id/btnRegister"
         android:text="Đăng ký"
+        android:textStyle="bold"
+        android:backgroundTint="#2F6DF6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
