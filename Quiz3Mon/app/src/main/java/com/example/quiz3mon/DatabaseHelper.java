@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.*;
 import android.database.*;
 import android.content.ContentValues;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "QuizApp.db";
-    public static final int DB_VERSION = 2;
+    public static final int DB_VERSION = 3;
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -96,26 +97,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean registerUser(String username, String password, String role) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM users WHERE username=?", new String[]{username});
-        if (c.getCount() > 0) {
-            return false;
+        try {
+            if (c.getCount() > 0) return false;
+        } finally {
+            c.close();
         }
 
         ContentValues values = new ContentValues();
         values.put("username", username);
         values.put("password", password);
         values.put("role", role);
-        db.insert("users", null, values);
-        return true;
+        long result = db.insert("users", null, values);
+        return result != -1;
     }
 
     public String checkUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT role FROM users WHERE username=? AND password=?",
-                new String[]{username, password});
-        if (c.moveToFirst()) {
-            return c.getString(0);
+        Cursor c = db.rawQuery("SELECT role FROM users WHERE username=? AND password=?", new String[]{username, password});
+        try {
+            if (c.moveToFirst()) {
+                return c.getString(0);
+            }
+            return null;
+        } finally {
+            c.close();
         }
-        return null;
     }
 
     public boolean addQuestion(String subject, String question, String a, String b, String c, String d, String answer) {
@@ -127,7 +133,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("optionB", b);
         values.put("optionC", c);
         values.put("optionD", d);
-        values.put("answer", answer); // sửa đúng tên cột
+        values.put("answer", answer);
+        Log.d("DB_INSERT", "Thêm câu hỏi: " + subject + " | " + question + " | A: " + a + " | Đúng: " + answer);
         long result = db.insert("questions", null, values);
         return result != -1;
     }
@@ -150,7 +157,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 questions.add(new Question(id, subject, ques, a, b, c, d, answer));
             } while (cursor.moveToNext());
         }
-
         cursor.close();
         return questions;
     }
