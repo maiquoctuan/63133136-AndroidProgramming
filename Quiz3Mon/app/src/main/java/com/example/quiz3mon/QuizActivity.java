@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quiz3mon.model.QuestionResult;
+
 import java.util.ArrayList;
 
 public class QuizActivity extends AppCompatActivity {
@@ -62,6 +64,8 @@ public class QuizActivity extends AppCompatActivity {
                 Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
                 intent.putExtra("score", score);
                 intent.putExtra("total", questionList.size());
+                intent.putExtra("resultList", questionList); // Truyền danh sách câu trả lời nếu cần
+                intent.putExtra("fromQuiz", true); // Để biết là chuyển từ làm bài
                 startActivity(intent);
                 finish();
             }
