@@ -5,6 +5,9 @@ import android.database.sqlite.*;
 import android.database.*;
 import android.content.ContentValues;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "QuizApp.db";
@@ -113,6 +116,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return c.getString(0);
         }
         return null;
+    }
+
+    public boolean addQuestion(String subject, String question, String a, String b, String c, String d, String answer) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("subject", subject);
+        values.put("question", question);
+        values.put("optionA", a);
+        values.put("optionB", b);
+        values.put("optionC", c);
+        values.put("optionD", d);
+        values.put("correctAnswer", answer);
+        long result = db.insert("Questions", null, values);
+        return result != -1;
+    }
+
+    public List<Question> getQuestionsBySubject(String subject) {
+        List<Question> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Questions WHERE subject = ?", new String[]{subject});
+        if (cursor.moveToFirst()) {
+            do {
+                list.add(new Question(
+                        cursor.getString(cursor.getColumnIndexOrThrow("question")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("optionA")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("optionB")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("optionC")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("optionD")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("correctAnswer"))
+                ));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return list;
     }
 
 
