@@ -36,7 +36,7 @@ public class AdminFragment extends Fragment {
         dbHelper = new DatabaseHelper(getContext());
 
         // Gán danh sách môn học cho Spinner
-        String[] subjects = {"English", "IT", "Literature"};
+        String[] subjects = {"English", "Tin học", "Ngữ Văn"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, subjects);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSubject.setAdapter(adapter);

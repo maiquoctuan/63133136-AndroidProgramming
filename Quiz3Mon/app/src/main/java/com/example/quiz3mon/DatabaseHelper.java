@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT, role TEXT)");
-        // Tạo bảng câu hỏi
+
         db.execSQL("CREATE TABLE questions (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "subject TEXT, " +
@@ -127,30 +127,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("optionB", b);
         values.put("optionC", c);
         values.put("optionD", d);
-        values.put("correctAnswer", answer);
-        long result = db.insert("Questions", null, values);
+        values.put("answer", answer); // sửa đúng tên cột
+        long result = db.insert("questions", null, values);
         return result != -1;
     }
 
     public List<Question> getQuestionsBySubject(String subject) {
-        List<Question> list = new ArrayList<>();
+        List<Question> questions = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Questions WHERE subject = ?", new String[]{subject});
+        Cursor cursor = db.rawQuery("SELECT * FROM questions WHERE subject=?", new String[]{subject});
+
         if (cursor.moveToFirst()) {
             do {
-                list.add(new Question(
-                        cursor.getString(cursor.getColumnIndexOrThrow("question")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("optionA")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("optionB")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("optionC")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("optionD")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("correctAnswer"))
-                ));
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String ques = cursor.getString(cursor.getColumnIndexOrThrow("question"));
+                String a = cursor.getString(cursor.getColumnIndexOrThrow("optionA"));
+                String b = cursor.getString(cursor.getColumnIndexOrThrow("optionB"));
+                String c = cursor.getString(cursor.getColumnIndexOrThrow("optionC"));
+                String d = cursor.getString(cursor.getColumnIndexOrThrow("optionD"));
+                String answer = cursor.getString(cursor.getColumnIndexOrThrow("answer"));
+
+                questions.add(new Question(id, subject, ques, a, b, c, d, answer));
             } while (cursor.moveToNext());
         }
+
         cursor.close();
-        return list;
+        return questions;
     }
-
-
 }

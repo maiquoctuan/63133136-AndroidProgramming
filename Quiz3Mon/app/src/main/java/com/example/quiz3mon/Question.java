@@ -12,6 +12,9 @@ public class Question {
         this.answer = answer;
     }
 
+    public Question(int id, String subject, String ques, String a, String b, String c, String d, String answer) {
+    }
+
     public String getQuestion() {
         return question;
     }
