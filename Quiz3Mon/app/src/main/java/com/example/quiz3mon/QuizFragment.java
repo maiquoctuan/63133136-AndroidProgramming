@@ -27,8 +27,8 @@ public class QuizFragment extends Fragment {
 
         // Xử lý khi người dùng chọn môn
         btnEnglish.setOnClickListener(v -> startQuiz("English"));
-        btnIT.setOnClickListener(v -> startQuiz("IT"));
-        btnLiterature.setOnClickListener(v -> startQuiz("Literature"));
+        btnIT.setOnClickListener(v -> startQuiz("Tin học"));
+        btnLiterature.setOnClickListener(v -> startQuiz("Ngữ Văn"));
 
         return view;
     }

@@ -2,6 +2,7 @@ package com.example.quiz3mon;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         txtResult = findViewById(R.id.txtResult);
+        Button btnBackToHome = findViewById(R.id.btnBackToHome);
 
         int score = getIntent().getIntExtra("score", 0);
         int total = getIntent().getIntExtra("total", 0);

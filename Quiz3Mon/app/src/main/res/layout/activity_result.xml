@@ -1,17 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="32dp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg3">
 
-    <TextView
-        android:id="@+id/txtResult"
-        android:text="Kết quả"
-        android:textColor="#0057FE"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <!-- Tiêu đề -->
+            <TextView
+                android:id="@+id/tvResultTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kết quả bài kiểm tra"
+                android:textColor="#3F51B5"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Icon biểu cảm -->
+            <ImageView
+                android:id="@+id/ivEmoji"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/happy"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Điểm số -->
+            <TextView
+                android:id="@+id/txtResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Điểm:"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50"
+                android:layout_marginBottom="24dp" />
+            <!-- Nút quay lại -->
+            <Button
+                android:id="@+id/btnBackToHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quay về Trang chủ"
+                android:backgroundTint="#115BFC"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:padding="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp" />
+        </LinearLayout>
+</ScrollView>
