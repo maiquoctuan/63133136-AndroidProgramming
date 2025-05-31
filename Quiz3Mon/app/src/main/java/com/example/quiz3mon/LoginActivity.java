@@ -1,6 +1,7 @@
 package com.example.quiz3mon;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,9 +34,19 @@ public class LoginActivity extends AppCompatActivity {
             String username = etUsername.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
-            String role = db.checkUser(username, password);
+            String role = db.checkUser(username, password); // kiểm tra tài khoản
+
             if (role != null) {
                 Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
+                // Lưu role và username vào SharedPreferences
+                SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("username", username);
+                editor.putString("role", role);
+                editor.apply();
+
+                // Chuyển sang MainActivity
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 i.putExtra("role", role);
                 i.putExtra("username", username);
