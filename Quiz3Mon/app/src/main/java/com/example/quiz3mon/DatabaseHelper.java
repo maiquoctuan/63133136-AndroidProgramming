@@ -8,6 +8,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.example.quiz3mon.model.Result;
+
+
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -21,6 +24,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT, role TEXT)");
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS Results (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "userId TEXT, " +
+                "subject TEXT, " +
+                "score INTEGER, " +
+                "date TEXT)");
+
 
         db.execSQL("CREATE TABLE questions (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -93,6 +104,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS questions");
         onCreate(db);
     }
+    public void insertResult(String userId, String subject, int score, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("userId", userId);
+        values.put("subject", subject);
+        values.put("score", score);
+        values.put("date", date);
+        db.insert("Results", null, values);
+    }
+    public List<Result> getUserResults(String userId) {
+        List<Result> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Results WHERE userId = ? ORDER BY date DESC", new String[]{userId});
+        if (cursor.moveToFirst()) {
+            do {
+                int subjectIndex = cursor.getColumnIndex("subject");
+                int scoreIndex = cursor.getColumnIndex("score");
+                int dateIndex = cursor.getColumnIndex("date");
+
+                if (subjectIndex != -1 && scoreIndex != -1 && dateIndex != -1) {
+                    String subject = cursor.getString(subjectIndex);
+                    int score = cursor.getInt(scoreIndex);
+                    String date = cursor.getString(dateIndex);
+
+                    list.add(new Result(subject, score, date));
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return list;
+    }
+
 
     public boolean registerUser(String username, String password, String role) {
         SQLiteDatabase db = this.getWritableDatabase();

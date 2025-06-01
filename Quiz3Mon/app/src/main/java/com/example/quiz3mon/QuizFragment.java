@@ -1,6 +1,8 @@
 package com.example.quiz3mon;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,9 +31,20 @@ public class QuizFragment extends Fragment {
         btnEnglish.setOnClickListener(v -> startQuiz("English"));
         btnIT.setOnClickListener(v -> startQuiz("Tin học"));
         btnLiterature.setOnClickListener(v -> startQuiz("Ngữ Văn"));
+        Button btnLogout = view.findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(v -> {
+            SharedPreferences preferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            preferences.edit().clear().apply();
+
+            Intent intent = new Intent(requireActivity(), LoginActivity.class);
+            startActivity(intent);
+            requireActivity().finish(); // Kết thúc MainActivity
+        });
+
 
         return view;
     }
+
 
     // Phương thức mở QuizActivity và truyền tên môn học
     public void startQuiz(String subject) {
