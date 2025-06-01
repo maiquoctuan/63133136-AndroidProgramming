@@ -38,5 +38,10 @@ public class Question {
     public String getAnswer() {
         return answer;
     }
+
+    public int getId() {
+        return 0;
+    }
+
 }
 

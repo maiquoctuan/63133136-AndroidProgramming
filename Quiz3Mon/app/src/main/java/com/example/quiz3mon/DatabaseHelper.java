@@ -183,6 +183,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    // XÓA câu hỏi theo ID
+    public void deleteQuestion(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("questions", "id = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+
+    public List<Question> getAllQuestions() {
+        List<Question> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM questions", null);
+        if (cursor.moveToFirst()) {
+            do {
+                Question q = new Question(
+                        cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("question")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("optionA")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("optionB")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("optionC")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("optionD")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("answer")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("subject"))
+                );
+                list.add(q);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return list;
+    }
+
+    public void updateQuestion(int id, String question, String a, String b, String c, String d, String answer) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("question", question);
+        values.put("optionA", a);
+        values.put("optionB", b);
+        values.put("optionC", c);
+        values.put("optionD", d);
+        values.put("answer", answer);
+        db.update("questions", values, "id = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+
     public List<Question> getQuestionsBySubject(String subject) {
         List<Question> questions = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
