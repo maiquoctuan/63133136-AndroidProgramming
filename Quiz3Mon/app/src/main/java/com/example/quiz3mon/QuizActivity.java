@@ -2,6 +2,7 @@ package com.example.quiz3mon;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -13,7 +14,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -42,7 +46,7 @@ public class QuizActivity extends AppCompatActivity {
         rbD = findViewById(R.id.rbD);
         btnNext = findViewById(R.id.btnNext);
 
-        // Nhận tên môn học
+        // Nhận môn học từ Intent
         subject = getIntent().getStringExtra("subject");
         txtTitle.setText("Môn: " + subject);
 
@@ -53,12 +57,24 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         btnNext.setOnClickListener(v -> {
-            checkAnswer();
+            if (!checkAnswer()) {
+                return; // Nếu chưa chọn đáp án thì dừng lại
+            }
+
             currentQuestionIndex++;
+
             if (currentQuestionIndex < questionList.size()) {
                 showQuestion();
             } else {
-                // Hết câu hỏi -> chuyển sang màn hình kết quả
+                // Lưu kết quả vào bảng Results
+                DatabaseHelper db = new DatabaseHelper(QuizActivity.this);
+                SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                String username = prefs.getString("username", "");
+                String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+                db.insertResult(subject, score, date, username);
+
+                // Chuyển sang màn hình kết quả
                 Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
                 intent.putExtra("score", score);
                 intent.putExtra("total", questionList.size());
@@ -101,12 +117,11 @@ public class QuizActivity extends AppCompatActivity {
         rbD.setText(q.getOptionD());
     }
 
-    public void checkAnswer() {
+    public boolean checkAnswer() {
         int selectedId = radioGroup.getCheckedRadioButtonId();
         if (selectedId == -1) {
-            Toast.makeText(this, "Vui lòng chọn 1 đáp án", Toast.LENGTH_SHORT).show();
-            currentQuestionIndex--; // quay lại câu hiện tại
-            return;
+            Toast.makeText(this, "Vui lòng chọn một đáp án", Toast.LENGTH_SHORT).show();
+            return false;
         }
 
         RadioButton selectedRadio = findViewById(selectedId);
@@ -116,6 +131,6 @@ public class QuizActivity extends AppCompatActivity {
         if (selectedAnswer.equalsIgnoreCase(correctAnswer)) {
             score++;
         }
+        return true;
     }
-
 }

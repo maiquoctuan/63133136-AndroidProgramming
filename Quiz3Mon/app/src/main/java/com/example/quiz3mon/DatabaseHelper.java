@@ -32,7 +32,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "score INTEGER, " +
                 "date TEXT)");
 
-
         db.execSQL("CREATE TABLE questions (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "subject TEXT, " +
@@ -102,16 +101,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
         db.execSQL("DROP TABLE IF EXISTS users");
         db.execSQL("DROP TABLE IF EXISTS questions");
+        db.execSQL("DROP TABLE IF EXISTS Results");
         onCreate(db);
     }
-    public void insertResult(String userId, String subject, int score, String date) {
+    public void insertResult(String subject, int score, String date, String userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("userId", userId);
         values.put("subject", subject);
         values.put("score", score);
         values.put("date", date);
+        values.put("userId", userId); // giả sử userId lưu là username
         db.insert("Results", null, values);
+        db.close();
     }
     public List<Result> getUserResults(String userId) {
         List<Result> list = new ArrayList<>();

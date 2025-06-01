@@ -45,7 +45,7 @@ public class ResultActivity extends AppCompatActivity {
         txtResult.setText("Bạn trả lời đúng " + score + "/" + total + " câu");
 
         // Lưu kết quả vào database
-        db.insertResult(username, subject, score, currentDate);
+        db.insertResult(username, score, subject, currentDate);
 
         // Xử lý nút quay về
         btnBackToHome.setOnClickListener(new View.OnClickListener() {
