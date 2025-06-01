@@ -15,7 +15,7 @@ import com.example.quiz3mon.model.Result;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "QuizApp.db";
-    public static final int DB_VERSION = 3;
+    public static final int DB_VERSION = 4;
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

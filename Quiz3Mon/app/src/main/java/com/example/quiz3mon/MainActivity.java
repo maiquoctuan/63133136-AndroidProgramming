@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
         // Load mặc định là QuizFragment
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, quizFragment)
