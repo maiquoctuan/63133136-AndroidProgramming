@@ -1,5 +1,6 @@
 package com.example.quiz3mon;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,24 +20,12 @@ public class AdminFragment extends Fragment {
     Button btnAdd, btnView;
     DatabaseHelper dbHelper;
 
-    RecyclerView recyclerView;
-    AdminQuestionAdapter adapter;
-    List<Question> questionList;
-    DatabaseHelper databaseHelper;
 
     public AdminFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin, container, false);
-
-        recyclerView = view.findViewById(R.id.recyclerViewQuestions);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        dbHelper = new DatabaseHelper(getContext());
-        questionList = dbHelper.getAllQuestions(); // bạn cần tạo hàm này trong DBHelper
-        adapter = new AdminQuestionAdapter(getContext(), questionList);
-        recyclerView.setAdapter(adapter);
 
         // Ánh xạ giao diện
         spinnerSubject = view.findViewById(R.id.spinnerSubject);
